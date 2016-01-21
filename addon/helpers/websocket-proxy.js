@@ -63,7 +63,8 @@ export default Ember.ObjectProxy.extend({
       message = JSON.stringify(message);
     }
 
-    Ember.assert('Cannot send message to the websocket while it is not open.', this.readyState() === WebSocket.OPEN);
+    // FIXME: 1 === WebSocket.OPEN, but constants don't work at least in Chrome for some reason
+    Ember.assert('Cannot send message to the websocket while it is not open.', this.readyState() === 1);
 
     this.socket.send(message);
   },
